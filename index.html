@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Data Challenge for Capital One">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Challenge</title>
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Material Design icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Material Design Lite page styles:
+    You can choose other color schemes from the CDN, more info here http://www.getmdl.io/customize/index.html
+    Format: material.color1-color2.min.css, some examples:
+    material.red-teal.min.css
+    material.blue-orange.min.css
+    material.purple-indigo.min.css
+    -->
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/material.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!--Scripts-->
+    <script src="js/material.min.js"></script>
+    
+</head>
+  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+          <h3>Data Challenge</h3>
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+          <a href="#part_one" class="mdl-layout__tab is-active">Part One</a>
+          <a href="#part_two" class="mdl-layout__tab">Part Two</a>
+          <a href="#part_three" class="mdl-layout__tab">Part Three</a>
+          <a href="#part_four" class="mdl-layout__tab">Part Four</a>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+
+
+        <!--Part One: Data munging-->
+        <div class="mdl-layout__tab-panel is-active" id="part_one">
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h2>Data Munging</h2>
+                The code for part one can be found in <code>scripts/mung.py</code>. With the help of mung.py, it is very easy to read the csv files into dataframes in pandas
+                <br />
+                <br />
+                <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">mung</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">DataSource</span>
+<span style="color: #75715e"># First locate the two csv files</span>
+<span style="color: #f8f8f2">loans_csv</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">open(</span><span style="color: #e6db74">&#39;input_data/2012_to_2014_loans_data.csv&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">institutions_csv</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">open(</span><span style="color: #e6db74">&#39;input_data/2012_to_2014_institutions_data.csv&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #75715e"># Initialize</span>
+<span style="color: #f8f8f2">source</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">DataSource(loans_csv</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">loans_csv,institutions_csv</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">institutions_csv)</span>
+<span style="color: #75715e"># Get the pandas dataframe</span>
+<span style="color: #f8f8f2">df</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">hmda_init()</span>
+</pre></div>
+
+
+                <br />
+                <br />
+                Extracting to json format is also very simple
+                <br />
+                <br />
+                <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e"># out put the json file to the current directory, with states equal to VA or DC, and Conventional_Conforming_Flag = Y</span>
+<span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">hmda_to_json(df[:</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">],states</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;VA&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;DC&#39;</span><span style="color: #f8f8f2">],</span> <span style="color: #f8f8f2">conventional_conforming</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">True)</span>
+</pre></div>
+
+
+              </div>
+            </div>
+          </section>
+        </div>
+
+
+        <!--Part Two: Visualization-->
+        <div class="mdl-layout__tab-panel" id="part_two">
+          <!--Intro to first chart-->
+
+          <!--Intro to second chart-->
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h4>Market Segment, by State</h4>
+                The pie charts shows that Virgina and Maryland count for the largest loan market in this area 
+              </div>
+            </div>
+          </section>
+          <!--This is pie chart that shows market segment by state-->
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div id="market_state_div" class="mdl-card mdl-cell--12-col" style="height: 500px;"></div>
+          </section>
+
+          <!--Intro to third chart-->
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h4>State, Purpose</h4>
+                From the charts below we can see an intresting trend that the Purchase/Refinance ratio is getting bigger and bigger 
+              </div>
+            </div>
+          </section>
+          <!-- This shows the market by state in different year -->
+          <section class="section--footer mdl-color--white mdl-grid">
+            <!--State seg in 2012-->
+            <div id="market_state_2012_div" class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--1-col-phone" style="height: 200px;"></div>
+            <div id="market_state_2013_div" class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--1-col-phone" style="height: 200px;"></div>
+            <div id="market_state_2014_div" class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--1-col-phone" style="height: 200px;"></div>
+          </section>
+
+          <!--Intro to forth chart-->
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h4>Shrinking Market</h4>
+                However, the loan market in all five states were clearly Shrinking between 2012 and 2014.
+                <br />
+                <br />
+                Click on the legend on top to see total loan market of each state over 2012-2014
+              </div>
+            </div>
+          </section>
+          <!--Area stacked chart shows market trend over year-->
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div id="trend_chart_div" class="mdl-card mdl-cell--12-col" style="height: 600px;"></div>
+          </section>
+
+          <!--Conclusion-->
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h4>Conclusion</h4>
+                From the charts shown above we can see that 2014 was not the best year for change financial to enter the home loan market in these five states.
+                <br />
+                <br />
+                We can also use machine learning to see if this dataset can provide more insights about the market
+              </div>
+            </div>
+          </section>
+      
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                <h4 class="mdl-cell mdl-cell--12-col">Open Source Frameworks Used</h4>
+                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <img src="https://ecomfe.github.io/echarts/doc/asset/img/echarts-logo2.png" class="section__circle-container__circle">
+                </div>
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                  <h5>Echarts</h5>
+                  ECharts is a free, powerful charting and visualization library. It is written in pure JavaScript and based on zrender <a href="https://github.com/ecomfe/echarts">Source Code</a>.
+                </div>
+                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <img src="https://designmodo.com/wp-content/uploads/2014/08/12.jpg" class="section__circle-container__circle">
+                </div>
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                  <h5>Material Design Lite</h5>
+                  Material Design Lite (MDL) lets you add a Material Design look and feel to your static content websites <a href="https://github.com/google/material-design-lite">Source Code</a>.
+                </div>
+                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <img src="http://devstickers.com/assets/img/pro/func.png" class="section__circle-container__circle">
+                </div>
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                  <h5>Web Starter Kit</h5>
+                  A workflow for multi-device websites <a href="https://github.com/google/web-starter-kit">Source Code</a>.
+                </div>
+              </div>
+            </div>  
+          </section>
+        </div>
+
+
+        <!--Part Three: Data Quality-->
+        <div class="mdl-layout__tab-panel" id="part_three">
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h2>Data Quality</h2>
+                The data quality is the last pipe of hmda_init()
+                <br />
+                Therefore, a quality report will be generated everytime we Initialize a DataSource object
+                <br />
+                <br />
+                <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">mung</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">DataSource</span>
+<span style="color: #75715e"># First locate the two csv files</span>
+<span style="color: #f8f8f2">loans_csv</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">open(</span><span style="color: #e6db74">&#39;input_data/2012_to_2014_loans_data.csv&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">institutions_csv</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">open(</span><span style="color: #e6db74">&#39;input_data/2012_to_2014_institutions_data.csv&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #75715e"># Initialize</span>
+<span style="color: #f8f8f2">source</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">DataSource(loans_csv</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">loans_csv,institutions_csv</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">institutions_csv)</span>
+<span style="color: #75715e"># Get the pandas dataframe</span>
+<span style="color: #f8f8f2">df</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">hmda_init()</span>
+<span style="color: #75715e"># Access the quality report</span>
+<span style="color: #f8f8f2">q_report</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">quality</span>
+</pre></div>
+
+
+                <br />
+                <h4>Sample Quality Report</h4>
+                <table border="1" class="dataframe">
+                  <thead>
+                    <tr style="text-align: right;">
+                      <th></th>
+                      <th>Data Type</th>
+                      <th>Present Values</th>
+                      <th>Missing Values</th>
+                      <th>Unique Values</th>
+                      <th>Minimum Values</th>
+                      <th>Maximum Values</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Agency_Code</th>
+                      <td>int64</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>6.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Applicant_Income_000</th>
+                      <td>float64</td>
+                      <td>1203305</td>
+                      <td>117853</td>
+                      <td>2175.0</td>
+                      <td>0.00</td>
+                      <td>9999.00</td>
+                    </tr>
+                    <tr>
+                      <th>As_of_Year</th>
+                      <td>int64</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>3.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Census_Tract_Number</th>
+                      <td>object</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>3019.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>County_Code</th>
+                      <td>float64</td>
+                      <td>1320321</td>
+                      <td>837</td>
+                      <td>136.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>FFIEC_Median_Family_Income</th>
+                      <td>float64</td>
+                      <td>1319481</td>
+                      <td>1677</td>
+                      <td>71.0</td>
+                      <td>45300.00</td>
+                      <td>113400.00</td>
+                    </tr>
+                    <tr>
+                      <th>Loan_Amount_000</th>
+                      <td>int64</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>2944.0</td>
+                      <td>1.00</td>
+                      <td>99625.00</td>
+                    </tr>
+                    <tr>
+                      <th>MSA_MD</th>
+                      <td>object</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>30.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Number_of_Owner_Occupied_Units</th>
+                      <td>float64</td>
+                      <td>1319284</td>
+                      <td>1874</td>
+                      <td>1795.0</td>
+                      <td>4.00</td>
+                      <td>3632.00</td>
+                    </tr>
+                    <tr>
+                      <th>Respondent_ID</th>
+                      <td>object</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>1384.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Sequence_Number</th>
+                      <td>int64</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>403227.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>State_Code</th>
+                      <td>int64</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>5.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Tract_to_MSA_MD_Income_Pct</th>
+                      <td>float64</td>
+                      <td>1318445</td>
+                      <td>2713</td>
+                      <td>5248.0</td>
+                      <td>4.96</td>
+                      <td>350.67</td>
+                    </tr>
+                    <tr>
+                      <th>MSA_MD_Description</th>
+                      <td>object</td>
+                      <td>1225941</td>
+                      <td>95217</td>
+                      <td>32.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Loan_Purpose_Description</th>
+                      <td>object</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>2.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Agency_Code_Description</th>
+                      <td>object</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>6.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Lien_Status_Description</th>
+                      <td>object</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>2.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Loan_Type_Description</th>
+                      <td>object</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>4.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>State</th>
+                      <td>object</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>5.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>County_Name</th>
+                      <td>object</td>
+                      <td>1320321</td>
+                      <td>837</td>
+                      <td>210.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Conforming_Limit_000</th>
+                      <td>float64</td>
+                      <td>1320321</td>
+                      <td>837</td>
+                      <td>7.0</td>
+                      <td>417.00</td>
+                      <td>625.00</td>
+                    </tr>
+                    <tr>
+                      <th>Conventional_Status</th>
+                      <td>object</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>2.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Conforming_Status</th>
+                      <td>object</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>2.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Conventional_Conforming_Flag</th>
+                      <td>bool</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>2.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Respondent_Name_TS</th>
+                      <td>object</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>1353.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Loan_Amount_Groupby_Purpose</th>
+                      <td>int64</td>
+                      <td>1321158</td>
+                      <td>0</td>
+                      <td>3.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                    <tr>
+                      <th>Income_Group</th>
+                      <td>float64</td>
+                      <td>1203305</td>
+                      <td>117853</td>
+                      <td>719.0</td>
+                      <td>NaN</td>
+                      <td>NaN</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br />
+                <br />
+                <h4>Additional Columns to Watch</h4>
+                When combined together, the following coloumns can provide valueble insights to the region's economy, thus enable us to make accurate prediction with techniques such as machine learning
+                <ul>
+                  <li>Applicant_Income_000</li>
+                  <li>FFIEC_Median_Family_Income</li>
+                  <li>Tract_to_MSA_MD_Income_Pct</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
+
+
+        <!--Part Four: -->
+        <div class="mdl-layout__tab-panel" id="part_four">
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h4>Machine Learning</h4>
+                <p>Since we have this amount of data about loans, I think it would be fun to test machine learning on this dataset. With the advance of computer technolodgy, especially the rapid growth growth of open source community, it is now fairly easy for some one to take advantage of machine learning</p>
+                <h3>Predict loan purpose: Purchase or Refinance</h3>
+                <p>The purpose of this experiment is to predict the purpose of single loan, based on some selected information</p>
+                <p>The first thing I need to do is to import some required libraries in python</p>
+                <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">sys</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">os</span>
+<span style="color: #f8f8f2">path</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">os</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">path</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">realpath(</span><span style="color: #e6db74">&#39;./scripts/&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">sys</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">path</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(path)</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">pandas</span> <span style="color: #f92672">as</span> <span style="color: #f8f8f2">pd</span>
+<span style="color: #f8f8f2">pd</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">options</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">display</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">max_columns</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">100</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">sklearn</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">datasets,</span> <span style="color: #f8f8f2">svm,</span> <span style="color: #f8f8f2">cross_validation,</span> <span style="color: #f8f8f2">tree,</span> <span style="color: #f8f8f2">preprocessing,</span> <span style="color: #f8f8f2">metrics</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">sklearn.ensemble</span> <span style="color: #f92672">as</span> <span style="color: #f8f8f2">ske</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">mung</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">DataSource</span>
+</pre></div>
+              <p>With the libraries imported, let’s access the HMDA dataset</p>
+              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">loans_csv</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">open(</span><span style="color: #e6db74">&#39;input_data/2012_to_2014_loans_data.csv&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">institutions_csv</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">open(</span><span style="color: #e6db74">&#39;input_data/2012_to_2014_institutions_data.csv&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">source</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">DataSource(loans_csv</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">loans_csv,institutions_csv</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">institutions_csv)</span>
+<span style="color: #f8f8f2">df</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">hmda_init()</span>
+</pre></div>
+              <p>Droping some of the columns will not only help memory mangement, it also gets rid of some variables that might be misleading, for example: Conforming_Status and Loan_Amount_000 are variables that comes after one’s loan is approved.</p>
+              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">df</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">drop([</span><span style="color: #e6db74">&#39;Agency_Code&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;County_Code&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;MSA_MD&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;Sequence_Number&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;MSA_MD_Description&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;Agency_Code_Description&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;Loan_Type_Description&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;State&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;County_Name&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;Conventional_Status&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;Conforming_Status&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;Conventional_Conforming_Flag&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;Respondent_Name_TS&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;Loan_Amount_Groupby_Purpose&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;Income_Group&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;Loan_Amount_000&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;Respondent_ID&#39;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&#39;Lien_Status_Description&#39;</span><span style="color: #f8f8f2">],axis</span><span style="color: #f92672">=</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">columns</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">values</span>
+</pre></div>
+              <p>Below are the variables we will be using in our machine learning model training</p>
+              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">array([</span><span style="color: #e6db74">&#39;Applicant_Income_000&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;As_of_Year&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Census_Tract_Number&#39;</span><span style="color: #f8f8f2">,</span>
+       <span style="color: #e6db74">&#39;FFIEC_Median_Family_Income&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Number_of_Owner_Occupied_Units&#39;</span><span style="color: #f8f8f2">,</span>
+       <span style="color: #e6db74">&#39;State_Code&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Tract_to_MSA_MD_Income_Pct&#39;</span><span style="color: #f8f8f2">,</span>
+       <span style="color: #e6db74">&#39;Loan_Purpose_Description&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Conforming_Limit_000&#39;</span><span style="color: #f8f8f2">],</span> <span style="color: #f8f8f2">dtype</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">object)</span>
+</pre></div>
+              <p>Most algos are not suitable for dealing with null values, so here we need to drop rows that contains these null values</p>
+              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e"># Because Scikit is not suitable to process missing values, here we will drop all rows with missing values</span>
+<span style="color: #f8f8f2">df</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">dropna()</span>
+<span style="color: #f8f8f2">df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">info()</span>
+</pre></div>
+              <p>After droping null rows, we still have a little over 1.2 million datas, which is still a decent amount of data for training our model</p>
+              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">&lt;</span><span style="color: #66d9ef">class</span> <span style="color: #960050; background-color: #1e0010">&#39;</span><span style="color: #a6e22e">pandas</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">core</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">frame</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">DataFrame</span><span style="color: #e6db74">&#39;&gt;</span>
+<span style="color: #f8f8f2">Int64Index:</span> <span style="color: #ae81ff">1200657</span> <span style="color: #f8f8f2">entries,</span> <span style="color: #ae81ff">0</span> <span style="color: #f8f8f2">to</span> <span style="color: #ae81ff">1320857</span>
+<span style="color: #f8f8f2">Data</span> <span style="color: #f8f8f2">columns</span> <span style="color: #f8f8f2">(total</span> <span style="color: #ae81ff">9</span> <span style="color: #f8f8f2">columns):</span>
+<span style="color: #f8f8f2">Applicant_Income_000</span>              <span style="color: #ae81ff">1200657</span> <span style="color: #f8f8f2">non</span><span style="color: #f92672">-</span><span style="color: #f8f8f2">null</span> <span style="color: #f8f8f2">float64</span>
+<span style="color: #f8f8f2">As_of_Year</span>                        <span style="color: #ae81ff">1200657</span> <span style="color: #f8f8f2">non</span><span style="color: #f92672">-</span><span style="color: #f8f8f2">null</span> <span style="color: #f8f8f2">int64</span>
+<span style="color: #f8f8f2">Census_Tract_Number</span>               <span style="color: #ae81ff">1200657</span> <span style="color: #f8f8f2">non</span><span style="color: #f92672">-</span><span style="color: #f8f8f2">null</span> <span style="color: #f8f8f2">object</span>
+<span style="color: #f8f8f2">FFIEC_Median_Family_Income</span>        <span style="color: #ae81ff">1200657</span> <span style="color: #f8f8f2">non</span><span style="color: #f92672">-</span><span style="color: #f8f8f2">null</span> <span style="color: #f8f8f2">float64</span>
+<span style="color: #f8f8f2">Number_of_Owner_Occupied_Units</span>    <span style="color: #ae81ff">1200657</span> <span style="color: #f8f8f2">non</span><span style="color: #f92672">-</span><span style="color: #f8f8f2">null</span> <span style="color: #f8f8f2">float64</span>
+<span style="color: #f8f8f2">State_Code</span>                        <span style="color: #ae81ff">1200657</span> <span style="color: #f8f8f2">non</span><span style="color: #f92672">-</span><span style="color: #f8f8f2">null</span> <span style="color: #f8f8f2">int64</span>
+<span style="color: #f8f8f2">Tract_to_MSA_MD_Income_Pct</span>        <span style="color: #ae81ff">1200657</span> <span style="color: #f8f8f2">non</span><span style="color: #f92672">-</span><span style="color: #f8f8f2">null</span> <span style="color: #f8f8f2">float64</span>
+<span style="color: #f8f8f2">Loan_Purpose_Description</span>          <span style="color: #ae81ff">1200657</span> <span style="color: #f8f8f2">non</span><span style="color: #f92672">-</span><span style="color: #f8f8f2">null</span> <span style="color: #f8f8f2">object</span>
+<span style="color: #f8f8f2">Conforming_Limit_000</span>              <span style="color: #ae81ff">1200657</span> <span style="color: #f8f8f2">non</span><span style="color: #f92672">-</span><span style="color: #f8f8f2">null</span> <span style="color: #f8f8f2">float64</span>
+<span style="color: #f8f8f2">dtypes:</span> <span style="color: #f8f8f2">float64(</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">),</span> <span style="color: #f8f8f2">int64(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">),</span> <span style="color: #f8f8f2">object(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">memory</span> <span style="color: #f8f8f2">usage:</span> <span style="color: #ae81ff">91.6</span><span style="color: #f92672">+</span> <span style="color: #f8f8f2">MB</span>
+</pre></div>
+              <p>Here we will turn the string variables into integers so that the algo can better understand the categorical value behind them.</p>
+              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e"># Process the data in preparation for machine learning algo (Categorize)</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">preprocess_dataframe</span><span style="color: #f8f8f2">(dataframe):</span>
+    <span style="color: #f8f8f2">processed_df</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dataframe</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">copy()</span>
+    <span style="color: #f8f8f2">le</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">preprocessing</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">LabelEncoder()</span>
+<span style="color: #75715e">#     Convert string object to categorical variables</span>
+    <span style="color: #f8f8f2">processed_df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Census_Tract_Number</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">le</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">fit_transform(processed_df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Census_Tract_Number)</span>
+    <span style="color: #f8f8f2">processed_df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Loan_Purpose_Description</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">le</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">fit_transform(processed_df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Loan_Purpose_Description)</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">processed_df</span>
+<span style="color: #75715e"># Process our loan data</span>
+<span style="color: #f8f8f2">processed_df</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">preprocess_dataframe(df)</span>
+</pre></div>
+              <p>Here we will split the whole data based on purpose of loan, and create a training set and a testing set</p>
+              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">x</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">processed_df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">drop([</span><span style="color: #e6db74">&#39;Loan_Purpose_Description&#39;</span><span style="color: #f8f8f2">],axis</span><span style="color: #f92672">=</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">values</span>
+<span style="color: #f8f8f2">y</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">processed_df[</span><span style="color: #e6db74">&#39;Loan_Purpose_Description&#39;</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">values</span>
+<span style="color: #f8f8f2">x_train,x_test,y_train,y_test</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">cross_validation</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">train_test_split(x,y,test_size</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0.2</span><span style="color: #f8f8f2">)</span>
+</pre></div>
+              <p>A shuffle validator performs random selections to calculate average accuracy. However, it also required a lot more computing time. Because my laptop is not equipped with state-of-art hardwares, I will choose not to use a shuffle validator. But, it is always a good practice to use it in production level</p>
+              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">shuffle_validator</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">cross_validation</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ShuffleSplit(len(x),</span> <span style="color: #f8f8f2">n_iter</span><span style="color: #f92672">=</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">test_size</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0.2</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">random_state</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">test_classifier</span><span style="color: #f8f8f2">(clf):</span>
+    <span style="color: #f8f8f2">scores</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">cross_validation</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">cross_val_score(clf,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">cv</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">shuffle_validator)</span>
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Accuracy: %0.4f (+/- %0.2f)&quot;</span> <span style="color: #f92672">%</span> <span style="color: #f8f8f2">(scores</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">mean(),</span> <span style="color: #f8f8f2">scores</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">std()))</span>
+<span style="color: #75715e"># Decision Tree</span>
+<span style="color: #f8f8f2">clf_dt</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">tree</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">DecisionTreeClassifier(max_depth</span><span style="color: #f92672">=</span><span style="color: #ae81ff">12</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">test_classifier(clf_dt)</span>
+<span style="color: #f8f8f2">Accuracy:</span> <span style="color: #ae81ff">0.6562</span> <span style="color: #f8f8f2">(</span><span style="color: #f92672">+/-</span> <span style="color: #ae81ff">0.00</span><span style="color: #f8f8f2">)</span>
+<span style="color: #75715e"># Random Forest</span>
+<span style="color: #f8f8f2">clf_rf</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ske</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">RandomForestClassifier(n_estimators</span><span style="color: #f92672">=</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">clf_rf</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">fit(x_train,y_train)</span>
+<span style="color: #f8f8f2">clf_rf</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">score(x_test,y_test)</span>
+<span style="color: #ae81ff">0.60042809787949958</span>
+<span style="color: #75715e"># Gradient Boosting</span>
+<span style="color: #f8f8f2">clf_gb</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ske</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">GradientBoostingClassifier(n_estimators</span><span style="color: #f92672">=</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">test_classifier(clf_gb)</span>
+<span style="color: #ae81ff">0.65303949985</span>
+</pre></div>
+              <p>In the end, our models can achieve an accuracy of around 65%. I believe that, with more demographiic data, such as sex, education and race, we can achieve even higher score</p>
+              <p>From this experiement we can clearly see the bright future of machine learning and its application. With the right data, change finanacial can use the technolodgy to predict consumers behavior pattern and perform better marketing</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.4.0/echarts.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- Built with love using Web Starter Kit -->
+  </body>
+</html>
