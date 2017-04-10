@@ -90,3 +90,4 @@ ENV/
 
 # Ignore data input folder
 input_data/
+.csv
